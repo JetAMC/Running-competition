@@ -1,0 +1,214 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.myH1 {
+  color: #fff;
+  font-size: 35px;
+  margin-bottom: 30px;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+}
+
+.myH2 {
+  font-weight: 300;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  font-size: 25px;
+}
+
+input, select, body, button {
+  font-family: Roboto, sans-serif;
+}
+
+input:focus, select:focus {
+  outline: 0;
+}
+
+select {
+  cursor: pointer;
+}
+
+.main-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 100vh;
+  padding: 30px;
+  background: url("images/main-bg.jpg") no-repeat center;
+  background-size: cover;
+}
+
+.main-block__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.main-block__form-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 10px;
+}
+
+.main-block__form-area .main-block__form-title {
+  margin-bottom: 20px;
+}
+
+.main-block__form-area .main-block__form {
+  background: #fff;
+  margin-bottom: 20px;
+  padding: 30px;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.main-block__form-area .main-block__form #runningTime {
+  margin-bottom: 20px;
+}
+
+.main-block__table-area {
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.main-block__table-area .main-block__table-title {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 500px;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table tr:first-child {
+  font-weight: 700;
+}
+
+table tr:nth-child(odd) {
+  background: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+  background: #fff;
+}
+
+table td {
+  padding: 10px;
+}
+
+table td:last-child {
+  text-align: center;
+}
+
+table td img {
+  margin-right: 5px;
+}
+
+.myInput, .mySelect {
+  padding: 5px;
+  border-radius: 5px;
+  border: 0;
+  height: 40px;
+  width: 100%;
+  font-size: 17px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+.myButton {
+  padding: 10px;
+  width: 250px;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background: #b300b3;
+}
+
+.myButton:hover {
+  background: purple;
+}
+
+.myButton i {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.myButton:focus {
+  outline: 0;
+}
+/*# sourceMappingURL=style.css.map */

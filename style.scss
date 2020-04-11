@@ -1,0 +1,139 @@
+@import 'variables';
+
+* {
+    box-sizing: border-box;
+}
+
+@mixin flexCenter ($column) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: $column;
+}
+
+.myH1 {
+    color: $defaultTextColor;
+    font-size: 35px;
+    // margin: 30px;
+    margin-bottom: 30px;
+    font-family: $mainFont;
+    font-weight: 700;
+}
+
+.myH2 {
+    font-weight: 300;
+    margin: 0;
+    font-family: $mainFont;
+    font-size: 25px;
+}
+
+input, select, body, button {
+    font-family: $mainFont;
+}
+
+input:focus, select:focus {
+    outline: 0;
+}
+
+select {
+    cursor: pointer;
+}
+
+.main-block {
+    @include flexCenter(column);
+    min-height: 100vh;
+    padding: 30px;
+    background: url("images/main-bg.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.main-block__container {
+    @include flexCenter(column);
+}
+
+.main-block__form-area {
+    @include flexCenter(column);
+    padding: 10px;
+    .main-block__form-title {
+        margin-bottom: $defaultMarginBottom;
+    }
+    .main-block__form {
+        background: $defaultBgColor;
+        margin-bottom: $defaultMarginBottom;
+        padding: 30px;
+        border-radius: $defaultBorderRadius;
+        @include flexCenter(column);
+        #runningTime {
+            margin-bottom: $defaultMarginBottom;
+        }
+    }
+}
+
+.main-block__table-area {
+    background: $defaultBgColor;
+    @include flexCenter(column);
+    padding: 30px;
+    border-radius: $defaultBorderRadius;
+    .main-block__table-title {
+        margin-bottom: $defaultMarginBottom;
+    }
+}
+
+table {
+    width: 500px;
+    border-collapse: collapse;
+    margin-bottom: $defaultMarginBottom;
+    tr {
+        &:first-child {
+            font-weight: 700;
+        }
+    }
+    tr:nth-child(odd) {
+        background: #f2f2f2;
+    }
+    tr:nth-child(even) {
+        background: $defaultBgColor;
+    }
+    td {
+        padding: 10px;
+        &:last-child {
+            text-align: center;
+        }
+        img {
+            margin-right: 5px;
+        }
+    }
+}
+
+.myInput, .mySelect {
+    padding: 5px;
+    border-radius: $defaultBorderRadius;
+    border: 0;
+    height: 40px;
+    width: 100%;
+    font-size: 17px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.myButton {
+    padding: 10px;
+    width: 250px;
+    color: $defaultTextColor;
+    border: 0;
+    border-radius: $defaultBorderRadius;
+    cursor: pointer;
+    font-size: 18px;
+    @include flexCenter(row);
+    background: lighten($buttonColor, 10);
+    &:hover {
+        background: $buttonColor;
+    }
+    i {
+        font-size: 20px;
+        margin-left: 5px;
+    }
+    &:focus {
+        outline: 0;
+    }
+}

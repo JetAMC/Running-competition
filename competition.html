@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:700&amp;display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b60c7bcec8.js" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-block">
+        <div class="main-block__container">
+            <div class="main-block__form-area">
+                <div class="main-block__main-title">
+                    <h1 class="myH1">Athletics at the Summer Olympics – Men's 100 metres <i class="fas fa-running"></i></h1>
+                </div>
+                <div class="main-block__form">
+                    <div class="main-block__form-title">
+                        <h2 class="myH2">Please fill the form</h2>
+                    </div>
+                    <input class="myInput" type="text" placeholder="Name" id="athleteName">
+                    <select class="mySelect" id="athleteNationality">
+                        <option>Nationality</option>
+                        <option value="jamaica">Jamaica</option>
+                        <option value="us">United States</option>
+                        <option value="canada">Canada</option>
+                        <option value="sa">South Africa</option>
+                        <option value="ic">Ivory Coast</option>
+                        <option value="france">France</option>
+                    </select>
+                    <input class="myInput" type="text" placeholder="Time" id="runningTime" autocomplete="off">
+                    <div class="main-block__form-button">
+                        <button class="myButton" id="submitTime">Add results <i class="fas fa-plus-circle"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="main-block__table-area">
+                <div class="main-block__table-title">
+                    <h2 class="myH2">Final results</h2>
+                </div>
+                <div class="main-block__table">
+                    <table>
+                        <tbody id="scoreTable">
+                            <tr id="1-0">
+                                <td>Nationality</td>
+                                <td width="50%">Name</td>
+                                <td>Time</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="main-block__table-button">
+                    <button class="myButton" onclick="sortingFunction();">Sort results <i class="fas fa-sort-amount-up-alt"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Custom bootsrap modal window -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Please fill all fields!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+<script>
+
+var timeArray = [];
+
+var countryObject = {
+    jamaica: "<img src=\'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Flag_of_Jamaica.svg/40px-Flag_of_Jamaica.svg.png\'> Jamaica",
+    us: "<img src=\'https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/40px-Flag_of_the_United_States.svg.png\'> United States",
+    canada: "<img src=\'https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Flag_of_Canada.svg/40px-Flag_of_Canada.svg.png\'> Canada",
+    sa: "<img src=\'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Flag_of_South_Africa.svg/40px-Flag_of_South_Africa.svg.png\'> South Africa",
+    ic: "<img src=\'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Flag_of_C%C3%B4te_d%27Ivoire.svg/40px-Flag_of_C%C3%B4te_d%27Ivoire.svg.png\'> Ivory Coast",
+    france: "<img src=\'https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/40px-Flag_of_France.svg.png\'> France"
+};
+
+var i = 0;
+
+const timeField = document.getElementById("runningTime");
+const addTime = document.getElementById("submitTime");
+const athlete = document.getElementById("athleteName");
+const nationality = document.getElementById("athleteNationality");
+const mainTable = document.getElementById("scoreTable");
+
+const addResults = (value) => {
+    const tr = document.createElement("tr");
+    tr.setAttribute("id", "1-" + timeArray[i]);
+
+    const td = document.createElement("td");
+
+    const athleteName = document.createElement("td");
+    athleteName.innerText = athlete.value;
+
+    const athleteNationality = document.createElement("td");
+    athleteNationality.innerHTML = countryObject[nationality.value];
+
+    const label = document.createElement("label");
+    label.innerText = timeArray[i];
+
+    mainTable.appendChild(tr);
+    tr.appendChild(athleteNationality);
+    tr.appendChild(athleteName);
+    tr.appendChild(td);
+    td.appendChild(label);
+};
+
+const AddDeleteValue = () => {
+    if (event.button === 0 && timeField.value.length !== 0 && athlete.value.length !== 0 && nationality.value !== 'Nationality') {
+        addResults(timeArray.push(timeField.value));
+        i++;
+        timeField.value = "";
+        athlete.value = "";
+        nationality.value = "Nationality";
+    } 
+    else {
+        $('#exampleModal').modal('show');
+    }
+};
+addTime.addEventListener("mouseup", AddDeleteValue);
+
+//custom sortin function
+const sortingFunction = () => {
+    var toSort = document.getElementById('scoreTable').children;
+    toSort = Array.prototype.slice.call(toSort, 0);
+
+    toSort.sort(function(a, b) {
+        var aord = +a.id.split('-')[1];
+        var bord = +b.id.split('-')[1];
+        // two elements never have the same ID hence this is sufficient:
+        return (aord > bord) ? 1 : -1;
+    });
+
+    var parent = document.getElementById('scoreTable');
+    parent.innerHTML = "";
+
+    for(var i = 0, l = toSort.length; i < l; i++) {
+        parent.appendChild(toSort[i]);
+    }
+};
+
+</script>
+
+
+</body>
+</html>
